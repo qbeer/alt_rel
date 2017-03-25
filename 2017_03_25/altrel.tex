@@ -1,0 +1,211 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hungarian]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper,
+		     tmargin = 25mm, 
+		     lmargin = 20mm,
+		     rmargin = 20mm,
+		     bmargin = 20mm}
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+%Define double underlining
+\def\doubleunderline#1{\underline{\underline{#1}}}
+% To change the abstract name from the overridden `Kivonat` to `Bevezetés`
+\addto{\captionshungarian}{\renewcommand{\abstractname}{Bevezetés}}
+% Section numbering
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+% Laplace and D'Alambert operators
+\newcommand*\Laplace{\mathop{}\!\mathbin\bigtriangleup}
+\newcommand*\DAlambert{\mathop{}\!\mathbin\Box}
+
+%Vector
+\makeatletter
+\newcommand{\Spvek}[2][r]{%
+  \gdef\@VORNE{1}
+  \left(\hskip-\arraycolsep%
+    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
+  \hskip-\arraycolsep\right)}
+
+\def\vekSp@lten#1{\xvekSp@lten#1;vekL@stLine;}
+\def\vekL@stLine{vekL@stLine}
+\def\xvekSp@lten#1;{\def\temp{#1}%
+  \ifx\temp\vekL@stLine
+  \else
+    \ifnum\@VORNE=1\gdef\@VORNE{0}
+    \else\@arraycr\fi%
+    #1%
+    \expandafter\xvekSp@lten
+  \fi}
+\makeatother
+
+\begin{document}
+
+\begin{titlepage}
+% Template for future notes.
+
+	\centering
+	\includegraphics[width=0.66\textwidth]{elte.jpg}\par\vspace{1cm}
+	{\scshape\LARGE ELTE TTK \par}
+	\vspace{2cm}
+	{\scshape\Large Az általános relativitáselmélet alapjai\par}
+	\vspace{1.5cm}
+	{\large\itshape készült az előadások alapján, írta: \par}
+	\vspace{1cm}
+	{\large\itshape Olar Alex\par}
+	\vfill
+	oktató\par
+	\vspace{0.5cm}
+	{\Large Dávid Gyula, \itshape{dgy}}
+
+	\vfill
+
+% Bottom of the page
+	{\large 2016/2017 \par}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+Ez a jegyzet \itshape{Dávid Gyula} előadássorozata alapján készült a 2016/17-es tanév második féléveben. A jegyzet bővítése tervben van. Az előadássorozat 3 féléven keresztül végig kíséri a most II. évfolyamot egészen a BSc végéig. Ezen összefoglaló célja számomra az ismétlés, majd közkinccsé tétel. 
+\end{abstract}
+
+\vfill
+
+\tableofcontents
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%
+
+\section{Jelölések}
+\vspace{1cm}
+\hspace{0.5cm} A speciális relativitáselmélet kurzusról ismert jelölésekhez hasonlóan felső és alsó indexeket használunk majd. Ha az index az angol ABC betűje, akkor az 0-3 közötti számozást jelent, ha a görög ABC betűje, akkor csak 1-3 között indexel.
+\newline
+\begin{center}
+$x^{k} = \Spvek{ct;x;y;z} \quad x_{k} = \Spvek{ct;-x;-y;-z} \quad x^{\alpha} = \Spvek{x;y;z} \quad x_{\alpha} = \Spvek{x;y;z}$
+\end{center}
+\hspace{0.5cm} A tenzorok indexelése hasonlóan felső, alsó, vegyes indexekkel történik.
+\begin{center}
+$\Lambda^{i j} \quad \Lambda_{i j} \quad \Lambda^{i}_{j}$
+\end{center}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%
+
+\section{Speciális relativitás elmélet - áttekintés}
+\vspace{0.5cm} Minden objektum szimmetria csoportjába tartozó transzformációk a:
+\begin{itemize}
+\item eltolás $\rightarrow$ impulzus megmaradás
+\item Lorentz-boost
+\item időbeli eltolás $\rightarrow$ energia megmaradás
+\item forgatás $\rightarrow$ impulzusmomentum megmaradás
+\end{itemize}
+
+\vspace{0.5cm} Az $x^{k}$ koordináták transzformációja ezen szimmetriák alkalmazása.
+\begin{equation*}
+x'^{k} = \Lambda^{k}_{l}x^{l} + a^{k}
+\end{equation*}
+\vspace{0.5cm} Ahol $a^{k}$ egy konstans eltolás, míg a két indexes tenzor a Lorentz-transzformációt írja le, a következő alakban:
+\begin{equation*}
+\Lambda = \left(\begin{array}{cccc} \pm 1&0&0&0 \\ 0& && \\ 0 &&\it{\Large{I}} &\\ 0 && & \end{array}\right)
+\left(\begin{array}{cccc} 1&0&0&0 \\ 0& & & \\ 0 & & \it{\large{F}} &\\ 0 &&&  \end{array}\right)
+\left(\begin{array}{cccc} \cosh{\chi}&&-\underline{\tilde{n}}\sinh{\chi}& \\ &  && \\ -\underline{n}\sinh{\chi}&&\it{\large{I + (\cosh{\chi} - 1)\underline{n}\circ \underline{n}}}&\\ && & \end{array}\right)
+\end{equation*}
+\newline
+Ahol $I$, $F$ rendre a 3 dimenziós egység és forgás mátrixok.  \newline
+\hspace{1cm}
+\vspace{0.5cm} A speciális relativitáselméletben a metrikus tenzor rendezi át az indexeket. Ezzel értelmezett a skaláris szorzás is a négyesvektorok között.
+\begin{equation*}
+x_{k} = g_{kl}x^{l} \quad x^{k} = g^{kl}x_{l} \quad g^{kl}g_{lm} = \delta^{k}_{m}
+\end{equation*}
+\vspace{0.5cm} A speciális relativitáselméletben a metrikus tenzor saját magának az inverze, konstans.
+\begin{equation*}
+g_{kl} = \left(\begin{array}{cccc} 1&0&0&0\\ 0&-1&0&0\\ 0&0&-1&0\\0&0&0&-1 \end{array}\right)
+\end{equation*}
+\vspace{0.5cm} Az ezzel definiált skalárszorzás pedig.
+\begin{equation*}
+x^{k}x_{k} = g_{kl}x^{k}x^{l} = (ct)^{2} - x^{2} - y^{2} - z^{2}
+\end{equation*}
+Az általános relativitáselmélet célja, hogy lokálisan teljesítse a speciális relativitáselméletet, viszont globálisan egy új leírást adjon a világra.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Newtoni - gravitáció}
+A newtoni gravitáció elmélete az évszázadok során beleivódott minden ember tudatába. A távolba hatás, a távoli testek által egymásra kifejtett erő mind-mind alapfogalmak a fizika tanulás kezdetén. \newline
+A mozgásegyenletekben szereplő arányossági tényezők egyenlősége komoly mérési eljárások kidolgozásra révén volt bizonyítható, súlyos tömeg, tehetetlen tömeg.
+\begin{equation*}
+m_{t}\vec{a} = m_{s}\vec{g}(\vec{r},t)
+\end{equation*}
+Kísérleti tény az is, hogy zárt görbén a gravitációs erőnek nincsen munkája. Azaz:
+\begin{equation*}
+\oint_\gamma \vec{g}(\vec{r},t) \,d\vec{r} = 0 = \int_F (\nabla \times \vec{g}) d\vec{F} = 0 \quad \quad \rightarrow \quad \quad \nabla \times \vec{g} = \vec{0}
+\end{equation*}
+Ebből következik, hogy $\vec{g}$ egy skalármező negatív gradienseként előállítható. Így:
+\begin{equation*}
+\oint_{\partial V} \vec{g} d\vec{F} = \int  \nabla\vec{g}dV = - 4\pi G \int \rho(\vec{r})dV \quad \rightarrow \quad \nabla\vec{g} = -4\pi G\rho(\vec{r})
+\end{equation*}
+Így látható, hogy folytonos tömegeloszlásra a Newton-féle gravitációs törvény a következő alakot ölti.
+\begin{equation*}
+\vec{g} = -\nabla\Phi \quad \rightarrow \quad \Laplace\Phi = 4\pi G \rho(\vec{r})
+\end{equation*}
+Az utóbbi lényegében a gravitációra felírt Poisson-egyenlet. \newline
+\hspace{0.5cm} Áttérve a speciális relativitáselméletre a gravitációs erő általánosítása a következő egyenlet lenne:
+\begin{equation*}
+\frac{d}{d\tau}(Mu_{k}) = M \partial_{k}\Phi
+\end{equation*}
+A sajátidő ($\tau$) szerinti deriválást elvégezve és kihasználva, hogy a négyessebesség $u_{k}u^{k} = c^{2}$ a következő összefüggést kapjuk:
+\begin{equation*}
+\frac{dM}{d\tau}c^{2} = \frac{\partial \Phi}{\partial x^{k}} \frac{dx^{k}}{d\tau}M = \frac{d\Phi}{d\tau}M
+\end{equation*}
+Ezt nevezhetjük a \textsc{Novobátzky-effektus}  speciális esetének. Mivel ez egy szeparálható differenciál egyenlet, a megoldása előáll
+\begin{align*}
+M = m e^{\frac{\Phi(x^{k})}{c^{2}}}
+\end{align*}
+Ezt pedig $1911$-ben \textsc{Nordström} vezette le. Lényegében ez volt a legjobb gravitáció elmélet amit a speciális relativitás elmélet előállított. A korábbiak alapján a mozgásegyenlet is előállítható, ha a kezdeti egyenletbe visszahelyettesítjük a $\frac{dM}{d\tau}$ tagot.
+\begin{equation*}
+\frac{dM}{d\tau} = \frac{1}{c^{2}}Mu^{l}\partial_{l}\Phi \quad \rightarrow \quad (\delta^{l}_{k} - \frac{u^{k}u_{l}}{c^{2}})\partial_{l}\Phi = \frac{du_{k}}{d\tau}
+\end{equation*}
+Jól látható, hogy a potenciál gradiense előtt álló operátor egy, a négyessebességre merőleges vetítést hajt végre.
+\section{Alapfogalmak}
+\hspace{0.5cm} Az első féléves mechanika és az Elméleti mechanika tárgyak szerves részét képezi a gyorsuló koordináta-rendszerek vizsgálata. Mind ismerjük a kulcsfogalmakat. Szükség van egy rögzített koordináta-rendszerre amihez képest egy másik origója $a_{0}$ gyorsulással transzlációt végezhet és foroghat. A forgás leírására a koordináta-rendszerek közötti ortogonális transzformációt használjuk, ahol az ortogonális mátrixok időfüggőek.
+\begin{equation*}
+\doubleunderline{\dot{O}}\hspace{0.1cm}\doubleunderline{O}^{T} = \doubleunderline{\Omega} = \underline{\omega} \times
+\end{equation*}
+A mozgásegyenlet pedig a következőképen transzformálódik:
+\begin{equation*}
+m\underline{a} = \underline{F} + m\underline{a}_{0} + m \underline{\omega} \times (\underline{\omega} \times \underline{r}) + 2m\underline{\omega}\times\underline{\dot{r}} + m \underline{\dot{\omega}}\times \underline{r}
+\end{equation*}
+\textsc{Einstein} arra jött rá, hogy a gravitáció sem erő, hanem egy koordináta transzformációval eltüntethető jelenség. Ennek leírására segítséget kért egy Magyarországon született, matematikus barátjától, \textsc{Marcell Grossmann}tól. Együtt dolgozták ki az általános relativitáselmélet matematikáját a \textsc{Riemann-féle differenciálgeometria} alapján. \newline
+\par A kulcsgondolatok:
+\begin{itemize}
+\item Nincs globális koordináta-rendszer amihez viszonyítani lehetne a lokális rendszereinket.
+\item Lokális rendszereink Minkowski-geometriájúak, azaz lokálisan a speciális relativitáselmélet teljesül.
+\end{itemize}
+\par
+Ennek precíz matematikai leírásához a következő gondolati lépesek lennének szükségesek:
+\begin{enumerate}
+\item halmaz $\rightarrow$ ezen értelmezett folytonosság, differenciálhatóság
+\item konnexió (kapcsolat a topologikus tér és a metrikus tér között)
+\item metrika
+\end{enumerate}
+A leíráshoz a sokaságok elméletét fogjuk alapul venni. Ezek közül is nekünk a differenciálható részsokaságok egy speciális részhalmaza kell majd a tér-idő leíráshoz. Hiszen mit tud egy fizikus? \textsc{Deriválni.}
+\subsection{Affin tér:}
+Egy affin tér egy (V, \textbf{V}, \textbf{-}) hármas, ahol:
+\begin{itemize}
+\item V nem üres halmaz
+\item \textbf{V} vektortér
+\item ''\textbf{-}'' leképezés pedig V  $\times$ V $\rightarrow$ \textbf{V}, amit (x,y) $\mapsto$ x-y = $\vec{a}$ alakban írunk
+\end{itemize}
+Axiómái a következők:
+\begin{itemize}
+\item (x-y) + (y-z) + (z-x) = $\vec{0}$
+\item az affin tér és az alul fekvő vektortér dimenziója azonos
+\item $\vec{a}$ = A \textbf{-} $o$ leképezést az affin tér $o$ középpontú ortogonalizációjának nevezzük
+\end{itemize}
+A tér-időről kezdetben csak annyit feltételezünk, hogy az egy 4 dimenziós affin tér, amely lokálisan Minkowski-struktúrával van ellátva. Ezeket a különböző rendszereket kell majd valahogy összefésülni.
+\subsection{Metrika}
+\end{document}\grid
