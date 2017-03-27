@@ -1,0 +1,276 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hungarian]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper,
+		     tmargin = 25mm, 
+		     lmargin = 20mm,
+		     rmargin = 20mm,
+		     bmargin = 20mm}
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+%Define double underlining
+\def\doubleunderline#1{\underline{\underline{#1}}}
+% To change the abstract name from the overridden `Kivonat` to `Bevezetés`
+\addto{\captionshungarian}{\renewcommand{\abstractname}{Bevezetés}}
+% Section numbering
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+% Laplace and D'Alambert operators
+\newcommand*\Laplace{\mathop{}\!\mathbin\bigtriangleup}
+\newcommand*\DAlambert{\mathop{}\!\mathbin\Box}
+
+%Vector
+\makeatletter
+\newcommand{\Spvek}[2][r]{%
+  \gdef\@VORNE{1}
+  \left(\hskip-\arraycolsep%
+    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
+  \hskip-\arraycolsep\right)}
+
+\def\vekSp@lten#1{\xvekSp@lten#1;vekL@stLine;}
+\def\vekL@stLine{vekL@stLine}
+\def\xvekSp@lten#1;{\def\temp{#1}%
+  \ifx\temp\vekL@stLine
+  \else
+    \ifnum\@VORNE=1\gdef\@VORNE{0}
+    \else\@arraycr\fi%
+    #1%
+    \expandafter\xvekSp@lten
+  \fi}
+\makeatother
+
+\begin{document}
+
+\begin{titlepage}
+% Template for future notes.
+
+	\centering
+	\includegraphics[width=0.66\textwidth]{elte.jpg}\par\vspace{1cm}
+	{\scshape\LARGE ELTE TTK \par}
+	\vspace{2cm}
+	{\scshape\Large Az általános relativitáselmélet alapjai\par}
+	\vspace{1.5cm}
+	{\large\itshape készült az előadások alapján, írta: \par}
+	\vspace{1cm}
+	{\large\itshape Olar Alex\par}
+	\vfill
+	oktató\par
+	\vspace{0.5cm}
+	{\Large Dávid Gyula, \itshape{dgy}}
+
+	\vfill
+
+% Bottom of the page
+	{\large 2016/2017 \par}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+Ez a jegyzet \itshape{Dávid Gyula} előadássorozata alapján készült a 2016/17-es tanév második féléveben. A jegyzet bővítése tervben van. Az előadássorozat 3 féléven keresztül végig kíséri a most II. évfolyamot egészen a BSc végéig. Ezen összefoglaló célja számomra az ismétlés, majd közkinccsé tétel. 
+\end{abstract}
+
+\vfill
+
+\tableofcontents
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%
+
+\section{Jelölések}
+\vspace{1cm}
+\hspace{0.5cm} A speciális relativitáselmélet kurzusról ismert jelölésekhez hasonlóan felső és alsó indexeket használunk majd. Ha az index az angol ABC betűje, akkor az 0-3 közötti számozást jelent, ha a görög ABC betűje, akkor csak 1-3 között indexel.
+\newline
+\begin{center}
+$x^{k} = \Spvek{ct;x;y;z} \quad x_{k} = \Spvek{ct;-x;-y;-z} \quad x^{\alpha} = \Spvek{x;y;z} \quad x_{\alpha} = \Spvek{x;y;z}$
+\end{center}
+\hspace{0.5cm} A tenzorok indexelése hasonlóan felső, alsó, vegyes indexekkel történik.
+\begin{center}
+$\Lambda^{i j} \quad \Lambda_{i j} \quad \Lambda^{i}_{j}$
+\end{center}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%
+
+\section{Speciális relativitás elmélet - áttekintés}
+\vspace{0.5cm} Minden objektum szimmetria csoportjába tartozó transzformációk a:
+\begin{itemize}
+\item eltolás $\rightarrow$ impulzus megmaradás
+\item Lorentz-boost
+\item időbeli eltolás $\rightarrow$ energia megmaradás
+\item forgatás $\rightarrow$ impulzusmomentum megmaradás
+\end{itemize}
+
+\vspace{0.5cm} Az $x^{k}$ koordináták transzformációja ezen szimmetriák alkalmazása.
+\begin{equation*}
+x'^{k} = \Lambda^{k}_{l}x^{l} + a^{k}
+\end{equation*}
+\vspace{0.5cm} Ahol $a^{k}$ egy konstans eltolás, míg a két indexes tenzor a Lorentz-transzformációt írja le, a következő alakban:
+\begin{equation*}
+\Lambda = \left(\begin{array}{cccc} \pm 1&0&0&0 \\ 0& && \\ 0 &&\it{\Large{I}} &\\ 0 && & \end{array}\right)
+\left(\begin{array}{cccc} 1&0&0&0 \\ 0& & & \\ 0 & & \it{\large{F}} &\\ 0 &&&  \end{array}\right)
+\left(\begin{array}{cccc} \cosh{\chi}&&-\underline{\tilde{n}}\sinh{\chi}& \\ &  && \\ -\underline{n}\sinh{\chi}&&\it{\large{I + (\cosh{\chi} - 1)\underline{n}\circ \underline{n}}}&\\ && & \end{array}\right)
+\end{equation*}
+\newline
+Ahol $I$, $F$ rendre a 3 dimenziós egység és forgás mátrixok.  \newline
+\hspace{1cm}
+\vspace{0.5cm} A speciális relativitáselméletben a metrikus tenzor rendezi át az indexeket. Ezzel értelmezett a skaláris szorzás is a négyesvektorok között.
+\begin{equation*}
+x_{k} = g_{kl}x^{l} \quad x^{k} = g^{kl}x_{l} \quad g^{kl}g_{lm} = \delta^{k}_{m}
+\end{equation*}
+\vspace{0.5cm} A speciális relativitáselméletben a metrikus tenzor saját magának az inverze, konstans.
+\begin{equation*}
+g_{kl} = \left(\begin{array}{cccc} 1&0&0&0\\ 0&-1&0&0\\ 0&0&-1&0\\0&0&0&-1 \end{array}\right)
+\end{equation*}
+\vspace{0.5cm} Az ezzel definiált skalárszorzás pedig.
+\begin{equation*}
+x^{k}x_{k} = g_{kl}x^{k}x^{l} = (ct)^{2} - x^{2} - y^{2} - z^{2}
+\end{equation*}
+Az általános relativitáselmélet célja, hogy lokálisan teljesítse a speciális relativitáselméletet, viszont globálisan egy új leírást adjon a világra.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Newtoni - gravitáció}
+A newtoni gravitáció elmélete az évszázadok során beleivódott minden ember tudatába. A távolba hatás, a távoli testek által egymásra kifejtett erő mind-mind alapfogalmak a fizika tanulás kezdetén. \newline
+A mozgásegyenletekben szereplő arányossági tényezők egyenlősége komoly mérési eljárások kidolgozásra révén volt bizonyítható, súlyos tömeg, tehetetlen tömeg.
+\begin{equation*}
+m_{t}\vec{a} = m_{s}\vec{g}(\vec{r},t)
+\end{equation*}
+Kísérleti tény az is, hogy zárt görbén a gravitációs erőnek nincsen munkája. Azaz:
+\begin{equation*}
+\oint_\gamma \vec{g}(\vec{r},t) \,d\vec{r} = 0 = \int_F (\nabla \times \vec{g}) d\vec{F} = 0 \quad \quad \rightarrow \quad \quad \nabla \times \vec{g} = \vec{0}
+\end{equation*}
+Ebből következik, hogy $\vec{g}$ egy skalármező negatív gradienseként előállítható. Így:
+\begin{equation*}
+\oint_{\partial V} \vec{g} d\vec{F} = \int  \nabla\vec{g}dV = - 4\pi G \int \rho(\vec{r})dV \quad \rightarrow \quad \nabla\vec{g} = -4\pi G\rho(\vec{r})
+\end{equation*}
+Így látható, hogy folytonos tömegeloszlásra a Newton-féle gravitációs törvény a következő alakot ölti.
+\begin{equation*}
+\vec{g} = -\nabla\Phi \quad \rightarrow \quad \Laplace\Phi = 4\pi G \rho(\vec{r})
+\end{equation*}
+Az utóbbi lényegében a gravitációra felírt Poisson-egyenlet. \newline
+\hspace{0.5cm} Áttérve a speciális relativitáselméletre a gravitációs erő általánosítása a következő egyenlet lenne:
+\begin{equation*}
+\frac{d}{d\tau}(Mu_{k}) = M \partial_{k}\Phi
+\end{equation*}
+A sajátidő ($\tau$) szerinti deriválást elvégezve és kihasználva, hogy a négyessebesség $u_{k}u^{k} = c^{2}$ a következő összefüggést kapjuk:
+\begin{equation*}
+\frac{dM}{d\tau}c^{2} = \frac{\partial \Phi}{\partial x^{k}} \frac{dx^{k}}{d\tau}M = \frac{d\Phi}{d\tau}M
+\end{equation*}
+Ezt nevezhetjük a \textsc{Novobátzky-effektus}  speciális esetének. Mivel ez egy szeparálható differenciál egyenlet, a megoldása előáll
+\begin{align*}
+M = m e^{\frac{\Phi(x^{k})}{c^{2}}}
+\end{align*}
+Ezt pedig $1911$-ben \textsc{Nordström} vezette le. Lényegében ez volt a legjobb gravitáció elmélet amit a speciális relativitás elmélet előállított. A korábbiak alapján a mozgásegyenlet is előállítható, ha a kezdeti egyenletbe visszahelyettesítjük a $\frac{dM}{d\tau}$ tagot.
+\begin{equation*}
+\frac{dM}{d\tau} = \frac{1}{c^{2}}Mu^{l}\partial_{l}\Phi \quad \rightarrow \quad (\delta^{l}_{k} - \frac{u^{k}u_{l}}{c^{2}})\partial_{l}\Phi = \frac{du_{k}}{d\tau}
+\end{equation*}
+Jól látható, hogy a potenciál gradiense előtt álló operátor egy, a négyessebességre merőleges vetítést hajt végre.
+\section{Alapfogalmak}
+\hspace{0.5cm} Az első féléves mechanika és az Elméleti mechanika tárgyak szerves részét képezi a gyorsuló koordináta-rendszerek vizsgálata. Mind ismerjük a kulcsfogalmakat. Szükség van egy rögzített koordináta-rendszerre amihez képest egy másik origója $a_{0}$ gyorsulással transzlációt végezhet és foroghat. A forgás leírására a koordináta-rendszerek közötti ortogonális transzformációt használjuk, ahol az ortogonális mátrixok időfüggőek.
+\begin{equation*}
+\doubleunderline{\dot{O}}\hspace{0.1cm}\doubleunderline{O}^{T} = \doubleunderline{\Omega} = \underline{\omega} \times
+\end{equation*}
+A mozgásegyenlet pedig a következőképen transzformálódik:
+\begin{equation*}
+m\underline{a} = \underline{F} + m\underline{a}_{0} + m \underline{\omega} \times (\underline{\omega} \times \underline{r}) + 2m\underline{\omega}\times\underline{\dot{r}} + m \underline{\dot{\omega}}\times \underline{r}
+\end{equation*}
+\textsc{Einstein} arra jött rá, hogy a gravitáció sem erő, hanem egy koordináta transzformációval eltüntethető jelenség. Ennek leírására segítséget kért egy Magyarországon született, matematikus barátjától, \textsc{Marcell Grossmann}tól. Együtt dolgozták ki az általános relativitáselmélet matematikáját a \textsc{Riemann-féle differenciálgeometria} alapján. \newline
+\par A kulcsgondolatok:
+\begin{itemize}
+\item Nincs globális koordináta-rendszer amihez viszonyítani lehetne a lokális rendszereinket.
+\item Lokális rendszereink Minkowski-geometriájúak, azaz lokálisan a speciális relativitáselmélet teljesül.
+\end{itemize}
+\par
+Ennek precíz matematikai leírásához a következő gondolati lépesek lennének szükségesek:
+\begin{enumerate}
+\item halmaz $\rightarrow$ ezen értelmezett folytonosság, differenciálhatóság
+\item konnexió (kapcsolat a topologikus tér és a metrikus tér között)
+\item metrika
+\end{enumerate}
+A leíráshoz a sokaságok elméletét fogjuk alapul venni. Ezek közül is nekünk a differenciálható részsokaságok egy speciális részhalmaza kell majd a tér-idő leíráshoz. Hiszen mit tud egy fizikus? \textsc{Deriválni.}
+\subsection{Affin tér:}
+Egy affin tér egy (V, \textbf{V}, \textbf{-}) hármas, ahol:
+\begin{itemize}
+\item V nem üres halmaz
+\item \textbf{V} vektortér
+\item ''\textbf{-}'' leképezés pedig V  $\times$ V $\rightarrow$ \textbf{V}, amit (x,y) $\mapsto$ x-y = $\vec{a}$ alakban írunk
+\end{itemize}
+Axiómái a következők:
+\begin{itemize}
+\item (x-y) + (y-z) + (z-x) = $\vec{0}$
+\item az affin tér és az alul fekvő vektortér dimenziója azonos
+\item $\vec{a}$ = A \textbf{-} $o$ leképezést az affin tér $o$ középpontú ortogonalizációjának nevezzük
+\end{itemize}
+A tér-időről kezdetben csak annyit feltételezünk, hogy az egy 4 dimenziós affin tér, amely lokálisan Minkowski-struktúrával van ellátva. Ezeket a különböző rendszereket kell majd valahogy összefésülni.
+\subsection{Metrika}
+\par Legyenek $a$,$b$ egy $\textsl{M}$ halmaz elemei. Ekkor a $\rho : \textsl{M} \times \textsl{M} \rightarrow \textsl{R}$ hozzárendelést metrikának nevezzük, ha:
+\begin{itemize}
+\item $\rho(a,b) \geq 0$, valamint akkor és csak akkor $0$, ha $a = b$
+\item $\rho(a,b) = \rho(b,a)$
+\item $\rho(a,b) \leq \rho(b,c) + \rho(c,a)$
+\end{itemize}
+\par A sokaságok leírásához viszont egyenlőre nem metrikát használunk. Mások lesznek az alapfogalmaink. A $\textsc{nyílt halmaz}$ok lesznek az alapfogalmaink. Erre építünk majd mindent, még ha nem is a lehető legprecízebb módon. Az $\textsl{Analízis I.}$ kurzusról már ismeretesek a nyílt halamzokra vonatkozó alapállítások:
+\begin{itemize}
+\item Végtelen sok nyílt halmaz uniója nyílt.
+\item Véges sok nyílt halmaz metszete is nyílt.
+\end{itemize}
+\par Legyen $X$ egy halmaz, ennek nyílt részhalmazai $B$-k. Az ezeket tartalmzó struktúrát ekkor $\textsc{topologikus tér}$nek nevezzük, ha tartalmazza $X$-et, az üres halmazt, valamint a nyílt halmazok végtelen unióját és véges metszetét. A topologikus tér ezáltal egy olyan halmaz, amin a folytonosság értelmezve van, hiszen tudunk közelséget/szomszédságot definiálni. Gyakorlatban persze a fizikus nem absztrahál ennyire, visszanyúl a koordinátázáshoz.
+\par Vegyükn egy sokaságot, legyen ez $\textsl{M}$. Ennek két részhalmazát $U$,$V$, melyek metszete nem üres képezzük le egy  rendre $p$,$q$: $\textsl{M}$  $\rightarrow$ $\textsl{$R^{n}$}$ paraméterezésekkel. Ekkor a közös metszes leképződött $\textsl{$R^{n}$}$ két részhalmazára amik között értelmezhető egy $F$ : $\textsl{$R^{n}$}$ $\rightarrow$ $\textsl{$R^{n}$}$ leképezés, amit kiterjeszthetünk $U$-ról, $V$-re, feltéve, hogy a paraméterezések invertálhatóak. Tehát $F$$\circ$ $q^{-1}$ $\circ$ $p$ : $U$$\rightarrow$ $V$ függvény már a sokaságon értelmezett. Megmutatható, hogy ez a paraméterezéstől független. 
+\par Az ilyen leképzesésekkel értelmezhető az absztrakt sokaságon a foyltonosság és deriválhatóság, hiszen $F$-en már ezeket könyedén tudjuk értelmezni. A keletkezett téképlapok maguk fölé definiálnak egy sokaságot. Ezt nevezzük $\textsc{algebrai topológiának}$, értelmezhetővé válik a differenciálható sokaság fogalom. Tartsuk szemelőtt, hogy $\textsl{továbbra sincsen beágyazó tér}$ (matematikusok belátták, hogy nem triviális módon értelmezhető olyan tér, amibe beágyazható egy ilyen struktúra, de ez közelében sincs a hétköznapi fogalmainknak). 
+\newline
+\begin{center}
+\par $\textit{Eljutottunk tehát oda, hogy ki tudjuk mondani, hogy a $\textsc{téridő modell}$ünk egy olyan}$ \newline $\textit{$4$ dimenziós differenciálható sokaság, amely lokálisan Minkowski-tér.}$
+\end{center}
+\par Az általános relativitáselméletben csakis felső indexes ''vektrok'' lesznek, mivel ezek a görbevonalú koordinátázáshoz képest, nem vektrokomponensek, hanem pusztán $\textsc{koordináták}$. Tehát nem transzformálódnak homogén lineáris módon.
+\par Már értelmezhetünk skalármezőt is. Általánosságban csak mezőket tudunk majd értelmezni amúgy is, hiszen az elmélet csak minden a sokaság minden pontjában értelmezett objektumokat enged meg. Legyen tehát $\Phi : \textsl{M} \rightarrow \textsl{R}$, mivel $\textsl{P}$ pont kölcsönös egyértelmű viszonyba hoszható a térképzeésen egy $x^{k}$ koordinátával így a (fizikus módon ugyan azzal a betűvel jelölve) $\Phi : \textsl{$R^{n}$} \rightarrow \textsl{$R^{n}$}$ függvény már egy skalármezőt definiál $\textsl{M}$-n is.
+\newline
+\par $\textsl{Einstein}$ célja a gyorsuló koordinátákra való kovariáns áttérés matematikai leírása és fizikai megalapozása volt.
+\par Ha ugyan arról a részsokaságról készítünk különböző térképzeéseket, akkor azok között léteznie kell egy folytonos, differenciállható és invertálható leképzésnek, ami ezeket egymásba transzformálja.
+\section{Topológia, derivációk, metrika}
+\par Legyen a sokaság minden pontjában értelmezve egy $T_{p}$ vektortér ( - érintőtér - ), ami független a paraméterezéstől mégis annak segítségével definiálhatjuk, hiszen ezeket a paraméterezés deriváltjának az értékkészletének egy részén értelmezhetjük:
+\begin{equation}
+T_{P}(\textsl{M}) := Ran_{Dp(p^{-1}(x))}
+\end{equation}
+Az ezen pontokban vett érintőterek unióját $\textsc{tangens nyaláb}$nak nevezzük. Ennek $\textsl{szelése}$ egy vektormező, ami lényegében egy olyan művelet, ami minden ponthoz hozzárendel az adott pontban vett érintőtérből egy elemet. Mivel a vektromező minden egyes eleme más halamzból került ki, így a különböző lineáris terek közötti átszámítás nem triviális. Egy szemléltetést segítő ábra erről:
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.46\linewidth}
+\centering
+\includegraphics[width=0.9\linewidth]{szeles.jpg}
+\caption{Szelés szemléltetése}
+\end{minipage}
+\begin{minipage}{0.46\linewidth}
+\centering
+\includegraphics[width=0.9\linewidth]{konfi.jpg}
+\caption{Konfigurációs tér}
+\end{minipage}
+\end{figure}
+\par Ahol az utóbbi a kettős inga konfigurációs terén értelmezett érintőtér, vagyis az általános koordináták deriváltja. Tehát lényegében a Lagrange-függvény a konfigurációs tér érintőterén értelmezett függvény.
+\newline
+\par A sokaság lokálisan $\textsl{homeomorf}$ $R^{n}$-el. Azaz kölcsönösen egyértelműen és folytonos leképezhető, persze csak akkor ha $n$ véges. A sokaság olyan topologikus tér, amely mindenhol lokálisan homeomorf $R^{n}$-el. Topologikus struktúránk tehát már van, de távolság fogalom még mindig nincs a sokaságon értelmezve.
+\subsection{Duális terek fogalma}
+\par Legyenek ($V_S$,+,*), valamint ($W_S$,+,*) vektorterek ugyanazon skalártest felett és $\textsl{A} : V \rightarrow W$ lineáris leképezés. Ezeken értelmezett az összeadás és a számmal szorzás így lineráis teret alkotnak az operátorok is.  Mi most egy speciális esetet vizsgálunk, amikor is $W_S = S$, mivel ekkor a lineáris leképezéseink funkcionálok, vagyis egy vektortérből skalárhalmazba képező függvények (lineritás továbbra is fennáll természetesen).
+\par A továbbiakban $S$ megegyezik a valós számok halmazával. Mostantól pedig a teret, amelyben a funkcionáljaink laknak hívjuk a $V$-hez tartozó $V^{*}$ duális térnek, vagy röviden $V$ duálisának. A funkcionálok lineáris teret alkotnak:
+\begin{itemize}
+\item $\varphi, \psi \in V^{*}$, valamint $x \in V$ és $\alpha \in R$
+\item $(\varphi + \psi)x = \varphi x + \psi x$
+\item $(\alpha \varphi)x = \alpha (\varphi x)$
+\end{itemize}
+\par Ahhoz, hogy erről a duális térről megállapítsuk, hogy hány dimenziós válasszunk benne egy bázist. Legyenek $\{\vec{e}_{k}\}_{k = 1}^{n}$ $\in$ $V$. Bármelyik $\vec{a} \in V$ előáll ezek lineárkombinációjaként. Ekkor:
+\begin{align*}
+\varphi\vec{a} = \varphi(a^{k}\vec{e}_{k}) = a^{k}\varphi\vec{e}_{k} \quad  \quad a^{k} \in R \\
+\varphi\vec{e}_{k} = \varphi_{k} \in R
+\end{align*}
+tehát a funcionált is n darab adattal tudjuk reprezentálni. Bevezetve speciális $\epsilon^{k} \in V^{*}$ olyan, hogy $\epsilon^{k}\vec{e}_{l} = \delta_{l}^{k}$. Ha előállítunk egy $\Phi \in V^{*}$ funkcionált a következő módon:
+\begin{align*}
+\Phi = \varphi_{k}\epsilon^{k} \in V^{*} \\
+\Phi\vec{a} = \varphi_{k}\epsilon^{k}\vec{a} = \varphi_{k}a^{k} = \varphi\vec{a} \\
+\rightarrow \Phi = \varphi \in V^{*}
+\end{align*}
+\par Vagyis ez azt jelenti, hogy véges dimenziós esetben a vektortér bázisai kölcsönösen megfeleltethetőek a duális térben $\epsilon^{k}$ bázisoknak így $dimV = dimV^{*}$ feltétel teljesül. Emelett elfogadjuk, hogy egy vektortér duálisának a duálisa a kezdeti vektortér, valamint, hogy egy vektortér és duálisa izomorfak.
+\end{document}\grid
