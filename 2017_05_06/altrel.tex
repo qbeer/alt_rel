@@ -409,5 +409,23 @@ tehát a funcionált is n darab adattal tudjuk reprezentálni. Bevezetve speciá
 \begin{equation}
     dx^{0}_{new} = \frac{dx_{1}^{0} + dx_2^{0}}{2} = -\frac{g_{0\alpha}}{g_{00}}dx^{\alpha}
 \end{equation}
-\par Viszont van egy aprócska probléma. Ez csak szomszédok között működik! Sajnos nem lehet egy egész flottát szinkronizálni. Csak akkor lehetne lehetséges, ha $g_{0\alpha} = 0$ lenne. Adott rendszerben mindig tudunk olyan metrikus tenzort konstruálni, ami ilyen, így a szinkronizálhatóság definiálható, de ez a koordinátázás tulajdonsága. Matematikailag a metrikus tenzor önkényes. Fizikailag viszont a szinkronizációból azt kapjuk, hogy valahol a múltban (Nagy Bumm) vagy a jövőben  (Nagy Reccs) szingularitást kapok. Az $Einstein-egyenletek$ből majd ez következik, de egyenlőre ez csak egy érdekes megjegyzés. 
+\par Viszont van egy aprócska probléma. Ez csak szomszédok között működik! Sajnos nem lehet egy egész flottát szinkronizálni. Csak akkor lehetne lehetséges, ha $g_{0\alpha} = 0$ lenne. Adott rendszerben mindig tudunk olyan metrikus tenzort konstruálni, ami ilyen, így a szinkronizálhatóság definiálható, de ez a koordinátázás tulajdonsága. Matematikailag a metrikus tenzor önkényes. Fizikailag viszont a szinkronizációból azt kapjuk, hogy valahol a múltban (Nagy Bumm) vagy a jövőben  (Nagy Reccs) szingularitást kapok. Az $Einstein-egyenletek$ből majd ez következik, de egyenlőre ez csak egy érdekes megjegyzés.
+\par Most nézzük meg, hogy mit gondolunk a jelek elküldési és visszaérkezési ideje közötti különbségből milyen távolságra lehet a szomszéd űrhajó. A kezdeti most rendszerből eltelt idő:
+\begin{gather*}
+    \Delta t = t_{2} - t_{1} = \frac{x^{0}_{2} - x^{0}_{1}}{c}
+\end{gather*}
+\par Számunkra azonban a saját időnk telik az űrhajónkon, így:
+\begin{gather*}
+    \Delta \tau = \sqrt{g_{00}}\frac{x^{0}_{2} - x^{0}_{1}}{c}
+\end{gather*}
+\par Felhasználva, hogy a két koordináta különbsége éppen a korábban kiszámolt $dx_{1,2}^{0}$-k különbsége:
+\begin{gather*}
+    \Delta \tau = \frac{2}{c}\frac{\sqrt{(g_{0\alpha}dx^{\alpha})(g_{0\beta}dx^{\beta})-(g_{00}g_{\alpha\beta}dx^{\alpha}dx^{\beta})}}{\sqrt{g_{00}}}
+\end{gather*}
+\par Mivel a fény oda-vissza ugyan akkora utat tesz meg a tér időben, így $c\Delta\tau = 2\Delta l$, így:
+\begin{gather*}
+    \Delta l^{2} = \frac{(g_{0\alpha}dx^{\alpha})(g_{0\beta}dx^{\beta})-(g_{00}g_{\alpha\beta}dx^{\alpha}dx^{\beta})}{g_{00}} \\ \\
+    \Delta l^{2} = \gamma_{\alpha\beta}dx^{\alpha}dx^{\beta}
+\end{gather*}
+\par Ahol az utóbbi képlet szinkronizált esetben igaz, mivel akkor $g_{0\alpha} = 0$. Viszont jól látható, hogy $\gamma$ függ az időtől, azaz a távolság a két ÁLLÓ űrhajó között időben VÁLTOZIK (ld. később: a tér tágul). 
 \end{document}\grid
