@@ -304,4 +304,165 @@ R_{\alpha\beta[\neq \alpha]} =
 \end{gather*}
 \end{frame}
 
+\begin{frame}[t]{Számolás...}
+\par Végre áttérhetünk a diagonális elemekre, mivel az összes off-diagonális elem zérus. $R_{00}$ tagra vonatkozó összefüggés már 
+korábban szerepelt, azt felhasználva:
+\begin{gather*}
+R_{00} = \Gamma_{00}^{1}(\Gamma_{11}^{1} + \Gamma_{12}^{2} + \Gamma_{13}^{3}) + \partial_{1}\Gamma_{00}^{1} - \Gamma_{00}^{1}
+\Gamma_{10}^{0} = _{\cdots} \\
+= \frac{1}{2V}U'(\frac{1}{2V}V' + \frac{1}{r} + \frac{1}{r}) + \partial_{r}(\frac{1}{2V}U') - \frac{1}{2V}U'\frac{1}{2U}U' \\
+R_{00} = \frac{1}{2V}U'' - \frac{1}{4UV}U'^{2} - \frac{1}{4V^{2}}U'V' + \frac{1}{rV}U' \\
+\end{gather*}
+\par A többi tag kiszámításához visszak kell térni a definiáló mennyiséghez:
+\begin{gather*}
+R_{11} = \partial_{s}\Gamma_{11}^{s} - \partial_{1}\Gamma_{1s}^{s} + \Gamma_{11}^{q}\Gamma_{qs}^{s} - \Gamma_{1s}^{q}\Gamma_{q1}^{s} =
+\partial_{1}\Gamma_{11}^{1} - \partial_{1}(\Gamma_{11}^{1} + \Gamma_{12}^{2} + \Gamma_{13}^{3} + \Gamma_{10}^{0}) +\\ 
+\Gamma_{11}^{1}(\Gamma_{10}^{0} + \Gamma_{11}^{1} + \Gamma_{12}^{2} + \Gamma_{13}^{3}) - \Gamma_{10}^{0}\Gamma_{01}^{0} -
+\Gamma_{1\alpha}^{\beta}\Gamma_{\beta 1}^{\alpha} = \quad _{\cdots}
+\end{gather*}
+\end{frame}
+
+\begin{frame}[t]{Számolás...}
+\begin{gather*}
+_{\cdots} \quad = -\partial_{1}(\Gamma_{12}^{2} + \Gamma_{13}^{3} + \Gamma_{10}^{0}) + \Gamma_{11}^{1}(\Gamma_{10}^{0} + \Gamma_{13}^{3})
+- \Gamma_{10}^{0}\Gamma_{01}^{0} - \Gamma_{12}^{2}\Gamma_{12}^{2} - \Gamma_{13}^{3}\Gamma_{13}^{3} = \\
+-\partial_{r}(\frac{1}{r} + \frac{1}{r} + \frac{1}{2U}U') + \frac{1}{2V}V'(\frac{1}{2U}U' + \frac{1}{r} + \frac{1}{r}) - \frac{1}{2U}U'\frac{1}{2U}U'
+- \frac{1}{r}\frac{1}{r} - \frac{1}{r}\frac{1}{r} = \\
+_{\cdots} \quad = \frac{1}{4U^{2}}U'^{2} - \frac{1}{2U}U'' + \frac{1}{4UV}U'V' + \frac{1}{rV}V' \\
+\end{gather*}
+\par $R_{22}$-t hasonlóan felírva, mint az előbbieket:
+\begin{gather*}
+R_{22} = \partial_{s}\Gamma_{22}^{s} - \partial_{2}\Gamma_{2s}^{s} + \Gamma_{22}^{q}\Gamma_{qs}^{s} - \Gamma_{2s}^{q}\Gamma_{q2}^{s} =
+\partial_{1}\Gamma_{22}^{1} - \partial_{2}\Gamma_{23}^{3} + \Gamma_{22}^{1}(\Gamma_{10}^{0} + \Gamma_{11}^{1} + \\
++ \Gamma_{13}^{3}) - \Gamma_{21}^{2}\Gamma_{22}^{1} - \Gamma_{23}^{3}\Gamma_{32}^{3} = \partial_{r}(-\frac{r}{V}) 
+- (-\frac{r}{V})(\frac{1}{2U}U' + \frac{1}{2V}V' + \frac{1}{r}) - \frac{1}{r}(-\frac{r}{V}) + \\
+- \partial_{\vartheta}(\frac{1}{tg\vartheta}) - \frac{1}{tg\vartheta}\frac{1}{tg\vartheta} = \quad _{\cdots}
+\end{gather*}
+\end{frame}
+
+\begin{frame}[t]{Számolás...}
+\begin{gather*}
+R_{22} = 1 - \frac{1}{V} + \frac{r}{2V^{2}}V' - \frac{r}{2UV}U' \\
+R_{33} = \partial_{s}\Gamma_{33}^{s} - \partial_{3}\Gamma_{3s}^{s} + \Gamma_{33}^{q}\Gamma_{qs}^{s} - \Gamma_{3s}^{q}\Gamma_{q3}^{s} =
+\partial_{1}\Gamma_{33}^{1} + \partial_{2}\Gamma_{33}^{2} + \Gamma_{33}^{1}(\Gamma_{10}^{0} + \Gamma_{11}^{1} + \\
++ \Gamma_{12}^{2} + \Gamma_{13}^{3}) - \Gamma_{33}^{1}\Gamma_{13}^{3} - \Gamma_{33}^{2}\Gamma_{23}^{3} - \Gamma_{31}^{3}\Gamma_{33}^{1}
+- \Gamma_{32}^{3}\Gamma_{33}^{2} = \partial_{r}(-\frac{r}{V}sin^{2}\vartheta ) + \\
++ \partial_{\vartheta}(-sin\vartheta cos\vartheta ) + (-\frac{r}{V}sin^{2}\vartheta )(\frac{1}{2U}U' + \frac{1}{2V}V' + \frac{1}{r} + \frac{1}{r} ) + \\
+- (-\frac{r}{V}sin^{2}\vartheta )\frac{1}{r} - (-sin\vartheta cos\vartheta)\frac{1}{tg\vartheta} - \frac{1}{r}(-\frac{r}{V}sin^{2}\vartheta) + \\
+- \frac{1}{tg\vartheta}(-sin\vartheta cos\vartheta ) = \quad _{\cdots} \\
+R_{33} = sin^{2}\vartheta (1 + \frac{r}{2V^{2}}V' - \frac{r}{2UV}U' - \frac{1}{V}) = sin^{2}\vartheta R_{22}
+\end{gather*}
+\end{frame}
+
+\begin{frame}[t]{Számolás...}
+\begin{itemize}
+\item A Ricci-skalár kiszámításához a korábbi képletet kell használni:
+\begin{itemize}
+\item $R = g^{kl}R_{kl} = R_{k}^{k} = g^{00}R_{00} + g^{11}R_{11} + g^{22}R_{22} + g^{33}R_{33}$
+\end{itemize}
+\end{itemize}
+\par Ez már egyértelműen csak néhány behelyettesítés és egyszerüsítés, végül:
+\begin{equation*}
+R = \frac{U''}{UV} - \frac{U'V'}{2UV^{2}} - \frac{U'^{2}}{2U^{2}V} - \frac{2V'}{rV+{2}} + \frac{2}{r^{2}}(\frac{1}{V} - 1) + \frac{2U'}{rUV}
+\end{equation*}
+\par Ezután következhet a behelyettesítés az Einsten-egyenletekbe. Az első egyenlet a következő:
+\begin{equation*}
+R_{00} - \frac{g_{00}}{2}R = 0
+\end{equation*}
+\par Amiből a következő összefüggést kapjuk:
+\begin{equation*}
+\frac{V'}{V} = \frac{1}{r}(1 - V)
+\end{equation*}
+\end{frame}
+
+\begin{frame}[t]{Számolás...}
+\par A következő egyenletek rendre:
+\begin{gather*}
+R_{11} - \frac{g_{11}}{2} R = 0 \quad \rightarrow \quad \frac{1}{r}(1 - V) + \frac{U'}{U} = 0 \\
+R_{22} - \frac{g_{22}}{2} R = 0 \quad \rightarrow \quad \frac{U'}{U} + \frac{rU''}{U} - \frac{rU'V'}{2UV} - \frac{rU'^{2}}{2U^{2}} - \frac{V'}{V} = 0 \\
+R_{33} - \frac{g_{33}}{2} R = R_{22}sin^{2}\vartheta - \frac{g_{22}sin^{2}\vartheta}{2}R \equiv R_{22} - \frac{g_{22}}{2} R = 0 \quad \rightarrow \quad _{\cdots}
+\end{gather*}
+\par A kapott diffrenciál-egyenletek megoldási menete. Először az első egyenletből kapott egyenletből meghatározható $V(r)$ függvény,
+mivel az egy elsőrendő, szeperálható differenciál-egyenlet, ezután ez behelyettesíthető a második egyenletbe, amiből ezáltal 
+megkapható $U(r)$ függvény, mivel az utóbbi differenciál-egyenlet is szeparálható elsőrendűvé redukálódik. Az utolsó egyenletet ellenőrzésre
+lehet használni. Ezt mellőzve az irodalommal vethetőek össze az eredmények.
+\end{frame}
+
+\begin{frame}[t]{Megoldás}
+\begin{gather*}
+\frac{V'}{V} = \frac{1}{r}(1 - V) \\
+\int \frac{1}{r} dr = \int \frac{1}{V - V^{2}} dV \\
+ln(r) + ln(C') = ln(\frac{V}{1-V}) \\
+\rightarrow V(r) = \frac{1}{1-\frac{C}{r}}
+\end{gather*}
+\par Ahol $C$-t pozitív mennyiség. Az eredményt behelyettesítve az alábbi egyenletbe
+$$\frac{1}{r}(1-V) + \frac{U'}{U} = 0$$
+\end{frame}
+
+\begin{frame}[t]{Megoldás}
+\begin{gather*}
+\frac{1}{r}(1 - \frac{1}{1- \frac{C}{r}}) + \frac{U'}{U} = 0 \\
+\int \frac{C}{r^{2} - Cr} dr = \int \frac{1}{U} dU \\
+\rightarrow U = 1 - \frac{C}{r}
+\end{gather*}
+\par Azaz eljutottunk a célig. Felírva az ívelemnégyzetet, most már csak a $C$ mennyiséget kell meghatározni, mivel az egyenletben
+nem lehet szabad paraméter.
+\begin{equation*}
+ds^{2} = ( 1 - \frac{C}{r})dt^{2} - (\frac{1}{1 - \frac{C}{r}})dr^{2} - r^{2}d\vartheta^{2} - r^{2}sin^{2}\vartheta d\varphi^{2}
+\end{equation*}
+\end{frame}
+
+\begin{frame}[t]{Megoldás}
+\par Ha M nagyon pici, akkor feltételezhető, hogy a metrikus tenzor csak infinitezimálisan tér el a Minkowski-síkban értelmezett
+metrikus tenzortól $$ g_{kl} = \eta_{kl} - h_{kl}$$ ahol $h_{kl}$ minden tagja infinitezimális.
+\par Vegyünk egy nagyon lassan mozgó részecskét, amelyre $\frac{dx^{i}}{d\tau} << \frac{dt}{d\tau}$, ekkor a geodetikusra felírt
+egyenlet:
+\begin{gather*}
+\frac{d^{2}x^{\mu}}{d\tau^{2}} - \Gamma_{00}^{\mu}(\frac{dt}{d\tau})^{2} = 0 \\
+\frac{d^{2}x^{\mu}}{d\tau^{2}} - \frac{1}{2}g^{\mu\lambda}(\partial_{0}g_{\lambda 0} + \partial_{0}g_{\lambda 0} - \partial_{\lambda}g_{00})(\frac{dt}{d\tau})^{2} = 0
+\end{gather*}
+\par Alkalmazva a közelítést $g^{\mu\lambda} \rightarrow \eta^{\mu\lambda}$ és $\mu = 0$ - ra felírva az egyenletet szimplán az kapható, hogy
+ $\frac{d^{2}t}{d\tau^{2}} = 0$ azaz a $\tau$ szerinti első deriváltja konstans a nulladik kordinátának.
+\end{frame}
+
+\begin{frame}[t]{Megoldás}
+\par A többi esetben:
+\begin{equation*}
+\frac{d^{2}x^{\alpha}}{d\tau^{2}} + \frac{1}{2}\eta^{\alpha\beta}\partial_{\beta}\partial_{\beta}h_{00}(\frac{dt}{d\tau})^{2} = 0 
+\end{equation*}
+\par Ahol $\eta^{\alpha\beta}$ a Minkowski-síkban vett metrikus tenzor $3\times 3$ - as, azaz a $3 \times 3$ - as egységmátrik (-1)-szerese.
+Ekkor az egyenlet ide egyszerűsödik:
+\begin{equation*}
+\frac{d^{2}x^{\alpha}}{d\tau^{2}} = \frac{1}{2}\partial_{\alpha}h_{00}(\frac{dt}{d\tau})^{2} \quad \sim \quad \ddot{x} = -\nabla \Phi
+\end{equation*}
+\par Látjuk, hogy majdcsak nem visszakaptuk a Newton-törvényt, ebből feltételezhetjük, hogy M esetén $h_{00} = -2\Phi$, ahol $\Phi$ a
+Newton-féle gravitációs potenciál, azaz $\Phi = -\frac{GM}{r}$.
+\vfill
+\par Mivel $g_{00} = 1 - \frac{C}{r} = 1 - h_{00} = 1 + 2\Phi = 1 - \frac{2GM}{r}$, ebből következik, hogy (c = 1):
+\begin{equation*}
+C = R_{s} = \frac{2GM}{c^{2}}
+\end{equation*} 
+\end{frame}
+
+\begin{frame}[t]{Megoldás}
+\par Az előbb kapott $R_{s}$ mennyiség a Schwarzschild-sugár. Ezzel felírva az ívelemnégyzetet:
+\begin{equation*}
+ds^{2} = (1-\frac{R_{s}}{r})dt^{2} - \frac{dr^{2}}{1-\frac{R_{s}}{r}} - r^{2}d\vartheta^{2} - r^{2}sin^{2}\vartheta d\varphi^{2}
+\end{equation*}
+\par Jól látható, hogy $r \rightarrow +\infty$-nél visszakapjuk, a Minkowski-sík megoldást.$\qed$
+\end{frame}
+
+\begin{frame}[t]{Eddington-Finkelstein metrika}
+\par A cél, hogy analitikusan elfolytassuk a megoldást az R sugáron belül is (nullához tartva), ehhez definálva $r^{*}$ változót a következő módon:
+$$r^{*}= \int \frac{1}{1 - \frac{R_{s}}{r}}$$
+és legyen itt $x = r-R_{s}$, ekkor az integrálra $$r^{*} = r - R_{s} + R_{s}ln(r - R_{s})$$ 
+ebből $-R_{s}$ konstanst elhagyva ( avagy a megoldást választva, ahol +C éppen kiejti). Ekkor $$ r^{*} = r + R_{s}ln(r - R_{s})$$
+Bevezetve a $v = ct - r^{*} = t - r^{*}$ avanzsált koordinátát $$dv = dt - dr + R_{s}\frac{1}{r- R_{s}}dr$$
+\end{frame}
+
+\begin{frame}[t]{Eddington-Finkeltstein metrika}
+\par Az előbbi $dv$ mennyiséggel felírva az ívelemnégyzetet, egyszerűsítések után:
+$$ds^{2} = (1-\frac{R_{s}}{r})dv^{2} - \frac{4R_{s}}{r}dr^{2} + 2(1-\frac{R_{s}}{r})drdv - r^{2}d\vartheta^{2} - r^{2}sin^{2}\vartheta d\varphi^{2}$$
+\end{frame}
+
 \end{document}
