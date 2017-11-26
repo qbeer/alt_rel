@@ -453,7 +453,7 @@ ds^{2} = (1-\frac{R_{s}}{r})dt^{2} - \frac{dr^{2}}{1-\frac{R_{s}}{r}} - r^{2}d\v
 \end{frame}
 
 \begin{frame}[t]{Eddington-Finkelstein metrika}
-\par A cél, hogy analitikusan elfolytassuk a megoldást az R sugáron belül is (nullához tartva), ehhez definálva $r^{*}$ változót a következő módon:
+\par A cél, hogy analitikusan elfolytassuk a megoldást ehhez definálva $r^{*}$ változót a következő módon:
 $$r^{*}= \int \frac{1}{1 - \frac{R_{s}}{r}}$$
 és legyen itt $x = r-R_{s}$, ekkor az integrálra $$r^{*} = r - R_{s} + R_{s}ln(r - R_{s})$$ 
 ebből $-R_{s}$ konstanst elhagyva ( avagy a megoldást választva, ahol +C éppen kiejti). Ekkor $$ r^{*} = r + R_{s}ln(r - R_{s})$$
@@ -463,6 +463,7 @@ Bevezetve a $v = ct - r^{*} = t - r^{*}$ avanzsált koordinátát $$dv = dt - dr
 \begin{frame}[t]{Eddington-Finkeltstein metrika}
 \par Az előbbi $dv$ mennyiséggel felírva az ívelemnégyzetet, egyszerűsítések után:
 $$ds^{2} = (1-\frac{R_{s}}{r})dv^{2} - \frac{4R_{s}}{r}dr^{2} + 2(1-\frac{R_{s}}{r})drdv - r^{2}d\vartheta^{2} - r^{2}sin^{2}\vartheta d\varphi^{2}$$
+\par A cél itt az, hogy ahogy $r \rightarrow R_{s}$ az $r^{*} \rightarrow \pm \infty$ az időkoordináta végtelenre nőjön (eseményhorizont).
 \end{frame}
 
 \end{document}
